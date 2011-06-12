@@ -4,15 +4,7 @@
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
-
-#ENABLE_NCPU=@ENABLE_NCPU@
-#ENABLE_ATIGPU=@ENABLE_ATIGPU@
-#USE_BDT_BUILTINS=@ENABLE_BDT_BUILTINS@
-
-#DEFS += -DXCL_DEBUG 
-#DEFS += -DXCL_WARN
-
-#DEFS += -DUSE_FAST_SETJMP	# ONLY USE THIS IF YOU KNOW WHAT YOU ARE DOING
+datarootdir=@datarootdir@
 
 ### select default install paths 
 INSTALL_BIN_DIR=@bindir@
@@ -20,8 +12,6 @@ INSTALL_LIB_DIR=@libdir@
 INSTALL_INCLUDE_DIR=@includedir@
 INSTALL_MAN_DIR=@mandir@
 
-#ATISTREAMSDK = /usr/local/atistream/atistream_sdk-2.0/
-#ATISTREAMSDK = /usr/local/atistream/
 ATISTREAMSDK=@AMD_SDK@
 
 ############################################################################
@@ -41,7 +31,6 @@ IMP_OBJS = platform.o device.o context.o command_queue.o event.o \
 	watermark.o
 
 
-#RT_OBJS = __elfcl_rt.o fast_setjmp.o
 RT_OBJS = fast_setjmp.o
 
 RT_BC = __vcore_rt.bc bdt_builtins_x86_64.bc

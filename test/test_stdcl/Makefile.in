@@ -6,8 +6,8 @@ exec_prefix=@exec_prefix@
 USE_OPENCL_INCS=-I@OPENCL_INC@
 USE_OPENCL_LIBS=-L@OPENCL_LIB@ -l@OPENCL_LIBNAME@
 
-USE_STDCL_INCS=-I@includedir@
-USE_STDCL_LIBS=-L@libdir@ -lstdcl
+USE_STDCL_INCS=-I../../src/libstdcl
+USE_STDCL_LIBS=-L../../src/libstdcl -lstdcl
 
 
 TESTS = arg_int arg_int4 arg_float arg_float4 block_int block_float special \

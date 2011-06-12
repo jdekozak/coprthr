@@ -2,8 +2,6 @@
 
 AC_PREREQ(2.59)
 AC_INIT(coprthr, 1.1, support@browndeertechnology.com)
-#AC_CONFIG_SRCDIR([clmalloc.h])
-#AC_CONFIG_HEADER([config.h])
 
 AC_PREFIX_DEFAULT(/usr/local/browndeer)
 
@@ -22,16 +20,13 @@ AC_CANONICAL_BUILD
 # Checks for programs.
 AC_PROG_CC
 AC_PROG_INSTALL
-#AC_PROG_LIBTOOL
 AC_PATH_PROG([BASH],[bash],,[path=`$path`])
+AC_PROG_MAKE_SET
 
 # Checks for libraries.
-# FIXME: Replace `main' with a function in `-lOpenCL':
-AC_CHECK_LIB([OpenCL], [main])
-# FIXME: Replace `main' with a function in `-ldl':
-AC_CHECK_LIB([dl], [main])
-# FIXME: Replace `main' with a function in `-lpthread':
-AC_CHECK_LIB([pthread], [main])
+AC_CHECK_LIB([OpenCL], [clBuildProgram])
+AC_CHECK_LIB([dl], [dlopen])
+AC_CHECK_LIB([pthread], [pthread_attr_init])
 
 
 ### extract enable/disable options
@@ -85,73 +80,38 @@ OPENCL_INC=
 OPENCL_LIB=
 DEFAULT_OPENCL_PLATFORM=
 AMD_SDK=
-AC_ARG_WITH(amd-sdk,
-  AC_HELP_STRING([--with-amd-sdk=DIR], [Use AMD SDK in DIR]),
+AC_ARG_WITH(std-sdk,
+  AC_HELP_STRING([--with-std-sdk=DIR], [Use STD Debian SDK in DIR]),
   [
     if test x$withval == xno; then
-		withval=/usr/local/atistream
+		withval=/usr
 	 fi;
 
       if test -d $withval; then
-         echo "found AMD SDK path"
+         echo "Found STD Debian SDK path"
 			AMD_SDK=$withval
       else
-         AC_MSG_ERROR([Could not find AMD SDK path])
+         AC_MSG_ERROR([Could not find STD Debian SDK path])
       fi;
 
       if test -e $withval/include/CL/cl.h; then
         OPENCL_INC="$withval/include"
-         echo "found AMD SDK include path"
+         echo "Found STD Debian SDK include path"
       else
-         AC_MSG_ERROR([Could not find AMD SDK include path])
-      fi;
-
-      if test -e $withval/lib/x86_64/libOpenCL.so; then
-        OPENCL_LIB="$withval/lib/x86_64"
-         echo "found AMD SDK lib path"
-      else
-         AC_MSG_ERROR([Could not find AMD SDK lib path])
-      fi;
-
-#	 DEFAULT_OPENCL_PLATFORM=ATI;
-	 DEFAULT_OPENCL_PLATFORM=AMD;
-
-  ],
-  [OPENCL_LIB=/usr/local/atistream/lib/x86_64; OPENCL_INC=/usr/local/atistream/include; DEFAULT_OPENCL_PLATFORM=AMD; AMD_SDK=/usr/local/atistream])
-
-AC_ARG_WITH(nvidia-sdk,
-  AC_HELP_STRING([--with-nvidia-sdk=DIR], [Use Nvidia SDK in DIR]),
-  [
-    if test x$withval == xno; then
-		withval=/usr/local/cuda
-	 fi;
-
-      if test -d $withval; then
-         echo "found Nvidia SDK path"
-      else
-         AC_MSG_ERROR([Could not find Nvidia SDK path])
-      fi;
-
-      if test -e $withval/include/CL/cl.h; then
-        OPENCL_INC="$withval/include"
-         echo "found Nvidia SDK include path"
-      else
-         AC_MSG_ERROR([Could not find Nvidia SDK include path])
+         AC_MSG_ERROR([Could not find STD Debian SDK include path])
       fi;
 
       if test -e $withval/lib/libOpenCL.so; then
         OPENCL_LIB="$withval/lib"
-         echo "found Nvidia SDK lib path"
-		elif test -e /usr/lib64/libOpenCL.so; then
-        OPENCL_LIB="/usr/lib64"
-         echo "found Nvidia SDK lib path"
+         echo "Found STD Debian SDK lib path"
       else
-         AC_MSG_ERROR([Could not find Nvidia SDK lib path])
+         AC_MSG_ERROR([Could not find STD Debian SDK lib path])
       fi;
 
-	 DEFAULT_OPENCL_PLATFORM=NVIDIA;
+	 DEFAULT_OPENCL_PLATFORM=STD;
+
   ],
-  [])
+  [OPENCL_LIB=/usr/lib; OPENCL_INC=/usr/include; DEFAULT_OPENCL_PLATFORM=STD; AMD_SDK=/usr])
 
 OPENCL_LIBNAME=OpenCL
 
@@ -163,8 +123,6 @@ if test $ENABLE_LIBOCL -eq 1; then
 
 	if ! test -e $AMD_SDK/lib/x86_64/builtins-x86_64-21.bc; then
 		AC_MSG_ERROR([libocl requres builtins-x86_64-21.bc, file not found])
-#	if ! test -e $AMD_SDK/lib/x86_64/builtins-x86_64.bc; then
-#		AC_MSG_ERROR([libocl requres builtins-x86_64.bc, file not found])
 	fi;
 
 fi;
@@ -185,8 +143,6 @@ AC_SUBST(OPENCL_LIBNAME)
 AC_SUBST(DEFAULT_OPENCL_PLATFORM)
 
 AC_SUBST(AMD_SDK)
-#AC_SUBST(AMD_SDK_INC)
-#AC_SUBST(AMD_SDK_LIB)
 
 AC_CONFIG_FILES([Makefile])
 AC_CONFIG_FILES([src/libstdcl/Makefile])

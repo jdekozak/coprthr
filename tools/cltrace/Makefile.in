@@ -2,11 +2,11 @@
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
+datarootdir=@datarootdir@
 
 USE_OPENCL_INCS = -I@OPENCL_INC@
 USE_OPENCL_LIBS = -L@OPENCL_LIB@ -l@OPENCL_LIBNAME@
 
-#DEF = -DSTDCL_WARN -DSTDCL_DEBUG
 DEF = -DSTDCL_WARN
 
 ### SELECT DEFAULT BEHAVIOR FOR cltrace (0=DISABLE, 1=ENABLE)
@@ -23,24 +23,16 @@ MAN1 = cltrace.1
 INSTALL_BINS = $(BIN_NAME)
 INSTALL_LIBS = libcltrace1.so
 
-ifeq (@DEFAULT_OPENCL_PLATFORM@,ATI)
-#INSTALL_LIBS += libcltrace0_calrt.so libcltrace0_calcl.so 
-endif
-
 INSTALL_BIN_DIR=@bindir@
 INSTALL_LIB_DIR=@libdir@
 INSTALL_MAN_DIR=@mandir@
 
-#INCS = -I../../include -I/usr/local/atistream/include
-#INCS = -I../../include $(USE_OPENCL_INCS)
 INCS += $(USE_OPENCL_INCS)
 
-#LIBS = -lelf -L/usr/local/atistream/lib/x86_64
 LIBS = $(USE_OPENCL_LIBS)
 
 OBJS = clld.o 
 
-#CC = gcc44
 CCFLAGS += -O1 -fPIC 
 
 all: $(BIN_NAME) $(addsuffix .gz,$(MAN1))

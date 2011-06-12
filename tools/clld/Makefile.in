@@ -2,10 +2,8 @@
 
 prefix=@prefix@
 exec_prefix=@exec_prefix@
+datarootdir=@datarootdir@
 
-
-#DEF = -DSTDCL_WARN -DSTDCL_DEBUG
-#DEF = -DSTDCL_WARN
 
 ######################################################################
 

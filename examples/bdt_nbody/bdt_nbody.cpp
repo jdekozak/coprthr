@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <float.h>
 #include <sys/time.h>
-
+#include <unistd.h>
 
 #ifdef ENABLE_CL
 #include<CL/cl.h>
