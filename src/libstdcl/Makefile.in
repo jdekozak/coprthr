@@ -69,8 +69,12 @@ MAN3 = claddr.3 clmalloc.3 clndrange_set2d.3 clarg_set.3 clmattach.3 \
 INSTALL_INCS = $(HDRS)
 INSTALL_LIBS = libstdcl.so libstdcl_d.so
 
-#CC = gcc44
-CCFLAGS += -g -O2 -fPIC
+
+ifeq (@ENABLE_DEBUG_LIBS@,1)
+CCFLAGS += -g -fPIC
+else
+CCFLAGS += -O2 -fPIC
+endif
 
 TARGET = libstdcl.so $(addsuffix .gz,$(MAN3))
 ifeq ($(ENABLE_DEBUG_LIBSTDCL),1)
