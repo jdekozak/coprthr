@@ -9,8 +9,14 @@ LIBSTDCL_ROOT = ../../src/libstdcl
 CLSRC = nbody_kern.cl
 DEFS += -DENABLE_CL
 INCS += -I$(LIBSTDCL_ROOT)
+
+ifeq (@ENABLE_DEBUG_LIBS@,1)
+LIBS += -lOpenCL -lpthread -ldl \
+	-L$(LIBSTDCL_ROOT) -lstdcl_d
+else
 LIBS += -lOpenCL -lpthread -ldl \
 	-L$(LIBSTDCL_ROOT) -lstdcl
+endif
 
 ANNOUNCEMENT = "\a\n\n*****PLEASE NOTE *****\n\nMake sure "$(LIBSTDCL_ROOT)"/lib \nis added to LD_LIBRARY_PATH\n\n"
 
