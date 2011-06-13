@@ -20,7 +20,11 @@ ANNOUNCEMENT = "\a\n\n*****PLEASE NOTE *****\n\nMake sure "$(LIBSTDCL_ROOT)"/lib
 ### comment out if GL support does not work correctly on your platform
 LIBS += -L/usr/lib64 -lglut -lGLEW
 
+ifeq (@ENABLE_DEBUG_LIBS@,1)
+CXXFLAGS += -g
+else
 CXXFLAGS += -O3
+endif
 
 CLLD = ../../tools/clld/clld
 
