@@ -2834,7 +2834,6 @@ fi
 
 
 # Checks for libraries.
-# FIXME: Replace `main' with a function in `-lOpenCL':
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for clBuildProgram in -lOpenCL" >&5
 $as_echo_n "checking for clBuildProgram in -lOpenCL... " >&6; }
@@ -2881,7 +2880,6 @@ _ACEOF
 
 fi
 
-# FIXME: Replace `main' with a function in `-ldl':
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for dlopen in -ldl" >&5
 $as_echo_n "checking for dlopen in -ldl... " >&6; }
 if test "${ac_cv_lib_dl_dlopen+set}" = set; then :
@@ -2927,7 +2925,6 @@ _ACEOF
 
 fi
 
-# FIXME: Replace `main' with a function in `-lpthread':
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for pthread_attr_init in -lpthread" >&5
 $as_echo_n "checking for pthread_attr_init in -lpthread... " >&6; }
 if test "${ac_cv_lib_pthread_pthread_attr_init+set}" = set; then :
@@ -3213,6 +3210,8 @@ ac_config_files="$ac_config_files test/test_ocl/Makefile"
 ac_config_files="$ac_config_files test/test_CLETE/Makefile"
 
 ac_config_files="$ac_config_files include/Makefile"
+
+ac_config_files="$ac_config_files examples/bdt_nbody/Makefile"
 
 
 ac_config_files="$ac_config_files test/test_ocl/scripts/run_tests.sh"
@@ -3943,6 +3942,7 @@ do
     "test/test_ocl/Makefile") CONFIG_FILES="$CONFIG_FILES test/test_ocl/Makefile" ;;
     "test/test_CLETE/Makefile") CONFIG_FILES="$CONFIG_FILES test/test_CLETE/Makefile" ;;
     "include/Makefile") CONFIG_FILES="$CONFIG_FILES include/Makefile" ;;
+    "examples/bdt_nbody/Makefile") CONFIG_FILES="$CONFIG_FILES examples/bdt_nbody/Makefile" ;;
     "test/test_ocl/scripts/run_tests.sh") CONFIG_FILES="$CONFIG_FILES test/test_ocl/scripts/run_tests.sh" ;;
     "test/test_ocl/scripts/run_quick_tests.sh") CONFIG_FILES="$CONFIG_FILES test/test_ocl/scripts/run_quick_tests.sh" ;;
     "test/test_stdcl/scripts/run_tests.sh") CONFIG_FILES="$CONFIG_FILES test/test_stdcl/scripts/run_tests.sh" ;;
