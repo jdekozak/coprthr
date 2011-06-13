@@ -99,6 +99,68 @@ cl_event clfork(
 #endif
 		0,0,0
 	);
+	switch(err)
+	  {
+	  case CL_INVALID_PROGRAM_EXECUTABLE:
+	    ERROR(__FILE__,__LINE__,
+		    "there is no successfully built program executable available for device associated with command_queue.");
+	    break;
+	  case CL_INVALID_COMMAND_QUEUE:
+	    ERROR(__FILE__,__LINE__,
+		    "command_queue is not a valid command-queue.");
+	    break;
+	  case CL_INVALID_KERNEL:
+	    ERROR(__FILE__,__LINE__,
+		    "kernel is not a valid kernel object.");
+	    break;
+	  case CL_INVALID_CONTEXT:
+	    ERROR(__FILE__,__LINE__,
+		    "context associated with command_queue and kernel is not the same or if the context associated with command_queue and events in event_wait_list are not the same.");
+	    break;
+	  case CL_INVALID_KERNEL_ARGS:
+	    ERROR(__FILE__,__LINE__,
+		    "the kernel argument values have not been specified.");
+	    break;
+	  case CL_INVALID_WORK_DIMENSION:
+	    ERROR(__FILE__,__LINE__,
+		    "work_dim is not a valid value (i.e. a value between 1 and 3).");
+	    break;
+	  case CL_INVALID_WORK_GROUP_SIZE:
+	    ERROR(__FILE__,__LINE__,
+		    "IF local_work_size is specified and number of work-items specified by global_work_size is not evenly divisable by size of work-group given by local_work_size or does not match the work-group size specified for kernel using the __attribute__((reqd_work_group_size(X, Y, Z))) qualifier in program source.");
+	    ERROR(__FILE__,__LINE__,
+		    "OR local_work_size is specified and the total number of work-items in the work-group computed as local_work_size[0] *... local_work_size[work_dim - 1] is greater than the value specified by CL_DEVICE_MAX_WORK_GROUP_SIZE in the table of OpenCL Device Queries for clGetDeviceInfo.");
+	    ERROR(__FILE__,__LINE__,
+		    "OR local_work_size is NULL and the __attribute__((reqd_work_group_size(X, Y, Z))) qualifier is used to declare the work-group size for kernel in the program source.");
+	    break;
+	  case CL_INVALID_WORK_ITEM_SIZE:
+	    ERROR(__FILE__,__LINE__,
+		    "the number of work-items specified in any of local_work_size[0], ... local_work_size[work_dim - 1] is greater than the corresponding values specified by CL_DEVICE_MAX_WORK_ITEM_SIZES[0], .... CL_DEVICE_MAX_WORK_ITEM_SIZES[work_dim - 1].");
+	    break;
+	  case CL_INVALID_GLOBAL_OFFSET:
+	    ERROR(__FILE__,__LINE__,
+		    "global_work_offset is not NULL.");
+	    break;
+	  case CL_OUT_OF_RESOURCES:
+	    ERROR(__FILE__,__LINE__,
+		    "there is a failure to queue the execution instance of kernel on the command-queue because of insufficient resources needed to execute the kernel. For example, the explicitly specified local_work_size causes a failure to execute the kernel because of insufficient resources such as registers or local memory. Another example would be the number of read-only image args used in kernel exceed the CL_DEVICE_MAX_READ_IMAGE_ARGS value for device or the number of write-only image args used in kernel exceed the CL_DEVICE_MAX_WRITE_IMAGE_ARGS value for device or the number of samplers used in kernel exceed CL_DEVICE_MAX_SAMPLERS for device.");
+	    break;
+	  case CL_MEM_OBJECT_ALLOCATION_FAILURE:
+	    ERROR(__FILE__,__LINE__,
+		    "there is a failure to allocate memory for data store associated with image or buffer objects specified as arguments to kernel.");
+	    break;
+	  case CL_INVALID_EVENT_WAIT_LIST:
+	    ERROR(__FILE__,__LINE__,
+		    "event_wait_list is NULL and num_events_in_wait_list > 0, or event_wait_list is not NULL and num_events_in_wait_list is 0, or if event objects in event_wait_list are not valid events.");
+	    break;
+	  case CL_OUT_OF_HOST_MEMORY:
+	    ERROR(__FILE__,__LINE__,
+		    "there is a failure to allocate resources required by the OpenCL implementation on the host.");
+	    break;
+	  default:
+	    break;
+	  }
+	if(err != CL_SUCCESS) exit(-1);
 	return((cl_event)0);
 
 
@@ -112,6 +174,68 @@ cl_event clfork(
 #endif
 		(evp)?1:0,evp,&ev
 	);
+	switch(err)
+	  {
+	  case CL_INVALID_PROGRAM_EXECUTABLE:
+	    ERROR(__FILE__,__LINE__,
+		    "there is no successfully built program executable available for device associated with command_queue.");
+	    break;
+	  case CL_INVALID_COMMAND_QUEUE:
+	    ERROR(__FILE__,__LINE__,
+		    "command_queue is not a valid command-queue.");
+	    break;
+	  case CL_INVALID_KERNEL:
+	    ERROR(__FILE__,__LINE__,
+		    "kernel is not a valid kernel object.");
+	    break;
+	  case CL_INVALID_CONTEXT:
+	    ERROR(__FILE__,__LINE__,
+		    "context associated with command_queue and kernel is not the same or if the context associated with command_queue and events in event_wait_list are not the same.");
+	    break;
+	  case CL_INVALID_KERNEL_ARGS:
+	    ERROR(__FILE__,__LINE__,
+		    "the kernel argument values have not been specified.");
+	    break;
+	  case CL_INVALID_WORK_DIMENSION:
+	    ERROR(__FILE__,__LINE__,
+		    "work_dim is not a valid value (i.e. a value between 1 and 3).");
+	    break;
+	  case CL_INVALID_WORK_GROUP_SIZE:
+	    ERROR(__FILE__,__LINE__,
+		    "IF local_work_size is specified and number of work-items specified by global_work_size is not evenly divisable by size of work-group given by local_work_size or does not match the work-group size specified for kernel using the __attribute__((reqd_work_group_size(X, Y, Z))) qualifier in program source.");
+	    ERROR(__FILE__,__LINE__,
+		    "OR local_work_size is specified and the total number of work-items in the work-group computed as local_work_size[0] *... local_work_size[work_dim - 1] is greater than the value specified by CL_DEVICE_MAX_WORK_GROUP_SIZE in the table of OpenCL Device Queries for clGetDeviceInfo.");
+	    ERROR(__FILE__,__LINE__,
+		    "OR local_work_size is NULL and the __attribute__((reqd_work_group_size(X, Y, Z))) qualifier is used to declare the work-group size for kernel in the program source.");
+	    break;
+	  case CL_INVALID_WORK_ITEM_SIZE:
+	    ERROR(__FILE__,__LINE__,
+		    "the number of work-items specified in any of local_work_size[0], ... local_work_size[work_dim - 1] is greater than the corresponding values specified by CL_DEVICE_MAX_WORK_ITEM_SIZES[0], .... CL_DEVICE_MAX_WORK_ITEM_SIZES[work_dim - 1].");
+	    break;
+	  case CL_INVALID_GLOBAL_OFFSET:
+	    ERROR(__FILE__,__LINE__,
+		    "global_work_offset is not NULL.");
+	    break;
+	  case CL_OUT_OF_RESOURCES:
+	    ERROR(__FILE__,__LINE__,
+		    "there is a failure to queue the execution instance of kernel on the command-queue because of insufficient resources needed to execute the kernel. For example, the explicitly specified local_work_size causes a failure to execute the kernel because of insufficient resources such as registers or local memory. Another example would be the number of read-only image args used in kernel exceed the CL_DEVICE_MAX_READ_IMAGE_ARGS value for device or the number of write-only image args used in kernel exceed the CL_DEVICE_MAX_WRITE_IMAGE_ARGS value for device or the number of samplers used in kernel exceed CL_DEVICE_MAX_SAMPLERS for device.");
+	    break;
+	  case CL_MEM_OBJECT_ALLOCATION_FAILURE:
+	    ERROR(__FILE__,__LINE__,
+		    "there is a failure to allocate memory for data store associated with image or buffer objects specified as arguments to kernel.");
+	    break;
+	  case CL_INVALID_EVENT_WAIT_LIST:
+	    ERROR(__FILE__,__LINE__,
+		    "event_wait_list is NULL and num_events_in_wait_list > 0, or event_wait_list is not NULL and num_events_in_wait_list is 0, or if event objects in event_wait_list are not valid events.");
+	    break;
+	  case CL_OUT_OF_HOST_MEMORY:
+	    ERROR(__FILE__,__LINE__,
+		    "there is a failure to allocate resources required by the OpenCL implementation on the host.");
+	    break;
+	  default:
+	    break;
+	  }
+	if(err != CL_SUCCESS) exit(-1);
 
 	DEBUG(__FILE__,__LINE__,"clfork: clEnqueueNDRangeKernel err %d\n",err);
 
