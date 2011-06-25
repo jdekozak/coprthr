@@ -568,6 +568,7 @@ ENABLE_BDT_BUILTINS
 ENABLE_ATIGPU
 ENABLE_NCPU
 ENABLE_LIBOCL
+ENABLE_CLLD
 ENABLE_CLTRACE
 ENABLE_DEBUG_LIBS
 ENABLE_CLETE
@@ -633,6 +634,7 @@ enable_libstdcl_clgl_support
 enable_clete
 enable_debug_libs
 enable_cltrace
+enable_clld
 enable_libocl
 enable_libocl_ncpu
 enable_libocl_atigpu
@@ -1269,6 +1271,7 @@ Optional Features:
   --enable-debug-libs     enable building debug versions of librarires
                           (default=yes)
   --enable-cltrace        enable building cltrace tool (default=yes)
+  --enable-clld           enable building clld tool (default=yes)
   --enable-libocl         enable building libocl (default=no)
   --enable-libocl-ncpu    enable libocl ncpu (default=yes)
   --enable-libocl-atigpu  enable libocl atigpu (default=no)
@@ -3006,6 +3009,14 @@ else
 fi
 
 
+# Check whether --enable-clld was given.
+if test "${enable_clld+set}" = set; then :
+  enableval=$enable_clld;
+else
+  enable_clld=yes
+fi
+
+
 # Check whether --enable-libocl was given.
 if test "${enable_libocl+set}" = set; then :
   enableval=$enable_libocl;
@@ -3079,6 +3090,14 @@ if test x$enable_cltrace != xno; then
 		else
 			echo "disabled "building cltrace tool""
 			ENABLE_CLTRACE=0
+		fi;
+
+if test x$enable_clld != xno; then
+			echo "enabled "building clld tool""
+			ENABLE_CLLD=1
+		else
+			echo "disabled "building clld tool""
+			ENABLE_CLLD=0
 		fi;
 
 if test x$enable_libocl != xno; then
@@ -3170,6 +3189,10 @@ if test $ENABLE_LIBOCL -eq 1; then
 
 fi;
 
+BASH=`which bash`
+
+
+
 
 
 
@@ -3189,6 +3212,8 @@ fi;
 
 ac_config_files="$ac_config_files Makefile"
 
+ac_config_files="$ac_config_files install-message.txt"
+
 ac_config_files="$ac_config_files src/libstdcl/Makefile"
 
 ac_config_files="$ac_config_files src/CLETE/Makefile"
@@ -3206,8 +3231,6 @@ ac_config_files="$ac_config_files test/Makefile"
 ac_config_files="$ac_config_files test/test_stdcl/Makefile"
 
 ac_config_files="$ac_config_files test/test_ocl/Makefile"
-
-ac_config_files="$ac_config_files test/test_CLETE/Makefile"
 
 ac_config_files="$ac_config_files include/Makefile"
 
@@ -3931,6 +3954,7 @@ for ac_config_target in $ac_config_targets
 do
   case $ac_config_target in
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "install-message.txt") CONFIG_FILES="$CONFIG_FILES install-message.txt" ;;
     "src/libstdcl/Makefile") CONFIG_FILES="$CONFIG_FILES src/libstdcl/Makefile" ;;
     "src/CLETE/Makefile") CONFIG_FILES="$CONFIG_FILES src/CLETE/Makefile" ;;
     "src/libocl/Makefile") CONFIG_FILES="$CONFIG_FILES src/libocl/Makefile" ;;
@@ -3940,7 +3964,6 @@ do
     "test/Makefile") CONFIG_FILES="$CONFIG_FILES test/Makefile" ;;
     "test/test_stdcl/Makefile") CONFIG_FILES="$CONFIG_FILES test/test_stdcl/Makefile" ;;
     "test/test_ocl/Makefile") CONFIG_FILES="$CONFIG_FILES test/test_ocl/Makefile" ;;
-    "test/test_CLETE/Makefile") CONFIG_FILES="$CONFIG_FILES test/test_CLETE/Makefile" ;;
     "include/Makefile") CONFIG_FILES="$CONFIG_FILES include/Makefile" ;;
     "examples/bdt_nbody/Makefile") CONFIG_FILES="$CONFIG_FILES examples/bdt_nbody/Makefile" ;;
     "test/test_ocl/scripts/run_tests.sh") CONFIG_FILES="$CONFIG_FILES test/test_ocl/scripts/run_tests.sh" ;;

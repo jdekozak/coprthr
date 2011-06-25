@@ -400,8 +400,6 @@ clcontext_create(
 	}
 #endif
 
-
-
 	if (cp->ctx) {
 
 		cp->devtyp = devtyp;
@@ -410,16 +408,15 @@ clcontext_create(
 		cp->dev = (cl_device_id*)malloc(10*devlist_sz);
 		err=clGetContextInfo(cp->ctx,CL_CONTEXT_DEVICES,devlist_sz,cp->dev,0);
 
-/*
-		cp->devtyp = devtyp;
-		err = clGetDeviceIDs(platformid,devtyp,0,0,&(cp->ndev));
-		DEBUG(__FILE__,__LINE__,"xxx %d",err);
-		DEBUG(__FILE__,__LINE__,"number of devices %d",cp->ndev);
-		cp->dev = (cl_device_id*)malloc(cp->ndev * sizeof(cl_device_id) );
-		err = clGetDeviceIDs(platformid,devtyp,cp->ndev,cp->dev,&(cp->ndev));
-		DEBUG(__FILE__,__LINE__,"xxx %d",err);
-		DEBUG(__FILE__,__LINE__," %p device[0]",cp->dev[0]);
-*/
+//		cp->devtyp = devtyp;
+//		err = clGetDeviceIDs(platformid,devtyp,0,0,&(cp->ndev));
+//		DEBUG(__FILE__,__LINE__,"xxx %d",err);
+//		DEBUG(__FILE__,__LINE__,"number of devices %d",cp->ndev);
+//		cp->dev = (cl_device_id*)malloc(cp->ndev * sizeof(cl_device_id) );
+//		err = clGetDeviceIDs(platformid,devtyp,cp->ndev,cp->dev,&(cp->ndev));
+//		DEBUG(__FILE__,__LINE__,"xxx %d",err);
+//		DEBUG(__FILE__,__LINE__," %p device[0]",cp->dev[0]);
+
 		
 	} else {
 
@@ -537,11 +534,11 @@ clcontext_create(
 		cp->mev[i].nev = cp->mev[i].ev_first = cp->mev[i].ev_free = 0;
 	}
 
-#ifdef ENABLE_CLEXPORT
-	cp->ndev_v = 0;
-	cp->extd = 0;
-	cp->imtd = 0;
-#endif
+//#ifdef ENABLE_CLEXPORT
+//	cp->ndev_v = 0;
+//	cp->extd = 0;
+//	cp->imtd = 0;
+//#endif
 
 
 	if (platforms) free(platforms);
