@@ -39,7 +39,12 @@ int nbody_init( int n, cl_float* pp, cl_float* vv )
 
 
 	cl_float zmbar1 = zmass/(cl_float)n;
-	for(i=0;i<n;i++) pp[__index_m(i)] /= zmbar1;
+	for(i=0;i<n;i++) {
+	  pp[__index_m(i)] /= zmbar1;
+	  if(i%2) {
+	    pp[__index_m(i)] = -pp[__index_m(i)];
+	  }
+	}
 	zmass = (cl_float)n;
 
 	cmr[0] = cmr[1] = cmr[2] = 0.0f;

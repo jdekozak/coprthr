@@ -95,21 +95,6 @@ void display_init()
 		memcpy(bmp,_binary_bdt_bmp_start+offset,w*h*3);
 	}
 
-//	FILE* fp = fopen("bdt.bmp","rb");
-//	unsigned char header[54];
-//	fread(header,54,1,fp);
-//	if(header[0]=='B' && header[1]=='M') {
-//		int offset = *(unsigned int*)(header+10);
-//		int w = *(int*)(header+18);
-//		int h = *(int*)(header+22);
-//		int b = (int)header[28];
-//		bmp = (unsigned char*)malloc(w*h*3);
-//		fseek(fp,offset,SEEK_SET);
-//		fread(bmp,w*h*3,1,fp);
-//		fclose(fp);
-//	}
-
-
 	if (iterate==iterate_cpu) { 
 		strncpy(devstr,"CPU",64);
 	} else if (iterate==iterate_cl) {
@@ -172,6 +157,11 @@ void displayfunc()
 
     glBegin(GL_POINTS);
     for(i=0; i < nparticle; ++i) {
+      if(pos[__index_m(i)] > 0) {
+	glColor3f(1.0, 1.0, 1.0);
+      } else {
+	glColor3f(1.0, 0.0, 0.0);
+      }
         glVertex3d(
 			ZOOM*pos[__index_x(i)],
 			ZOOM*pos[__index_y(i)],

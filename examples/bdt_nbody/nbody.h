@@ -34,11 +34,11 @@
 #define DEFAULT_NTHREAD 256
 #define DEFAULT_NBLOCK 1
 
-#define G_CONSTANT 1.0
+#define G_CONSTANT 2.0
 #define DEFAULT_DT (float)1e-4
 #define DEFAULT_ES (float)1e-2
 
-#define ZOOM 0.1
+#define ZOOM 0.2
 
 #define FLOPS_PER_INTERACTION 20
 
