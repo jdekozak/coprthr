@@ -1,0 +1,34 @@
+### Makefile for N-Body program
+NAME = nbody
+OBJS = nbody_init.o nbody_output.o
+LIBSTDCL_ROOT = ../../src/libstdcl
+INCS += -I$(LIBSTDCL_ROOT) -I.
+
+ifeq (@ENABLE_DEBUG_LIBS@,1)
+LIBS += -lOpenCL -lpthread -ldl \
+	-L$(LIBSTDCL_ROOT) -lstdcl_d
+else
+LIBS += -lOpenCL -lpthread -ldl \
+	-L$(LIBSTDCL_ROOT) -lstdcl
+endif
+LIBS += -lglut -lGLEW
+
+ifeq (@ENABLE_DEBUG_LIBS@,1)
+CFLAGS += -g
+else
+CFLAGS += -O3
+endif
+
+all: $(NAME).x
+
+$(NAME).x: $(NAME).o $(OBJS)
+	$(CXX) $(CFLAGS) $(INCS) -o $(NAME).x $(NAME).o $(OBJS) $(LIBS)
+
+.SUFFIXES:
+.SUFFIXES: .c .o
+
+.c.o:
+	$(CXX) $(CFLAGS) $(INCS) -c $<
+
+clean:
+	rm -f *.o *.x

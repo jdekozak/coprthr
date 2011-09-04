@@ -3236,6 +3236,8 @@ ac_config_files="$ac_config_files include/Makefile"
 
 ac_config_files="$ac_config_files examples/bdt_nbody/Makefile"
 
+ac_config_files="$ac_config_files examples/bdt_nbody_tutorial/Makefile"
+
 
 ac_config_files="$ac_config_files test/test_ocl/scripts/run_tests.sh"
 
@@ -3966,6 +3968,7 @@ do
     "test/test_ocl/Makefile") CONFIG_FILES="$CONFIG_FILES test/test_ocl/Makefile" ;;
     "include/Makefile") CONFIG_FILES="$CONFIG_FILES include/Makefile" ;;
     "examples/bdt_nbody/Makefile") CONFIG_FILES="$CONFIG_FILES examples/bdt_nbody/Makefile" ;;
+    "examples/bdt_nbody_tutorial/Makefile") CONFIG_FILES="$CONFIG_FILES examples/bdt_nbody_tutorial/Makefile" ;;
     "test/test_ocl/scripts/run_tests.sh") CONFIG_FILES="$CONFIG_FILES test/test_ocl/scripts/run_tests.sh" ;;
     "test/test_ocl/scripts/run_quick_tests.sh") CONFIG_FILES="$CONFIG_FILES test/test_ocl/scripts/run_quick_tests.sh" ;;
     "test/test_stdcl/scripts/run_tests.sh") CONFIG_FILES="$CONFIG_FILES test/test_stdcl/scripts/run_tests.sh" ;;

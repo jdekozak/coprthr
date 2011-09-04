@@ -11,7 +11,7 @@ INSTALL_INCLUDE_DIR=@includedir@
 INSTALL_MAN_DIR=@mandir@
 
 
-SUBDIRS += ./include ./src/libstdcl ./tools/clld ./examples/bdt_nbody
+SUBDIRS += ./include ./src/libstdcl ./tools/clld ./examples/bdt_nbody ./examples/bdt_nbody_tutorial
 
 ifeq (@ENABLE_LIBOCL@,1)
 SUBDIRS += ./src/libocl ./tools/xclnm

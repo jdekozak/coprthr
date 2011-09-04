@@ -28,8 +28,12 @@ __kernel void nbody_kern(
           float4 p2 = pblock[j]; /* Read a cached particle position */
           float4 d = p2 - p;
           float invr = rsqrt(d.x*d.x + d.y*d.y + d.z*d.z + eps);
-          float f = p2.w*invr*invr*invr;
-          a += f*d; /* Accumulate acceleration */
+          float f = fabs(p2.w)*invr*invr*invr;
+	  if( ((p2.w > 0) && (p.w > 0)) || ((p2.w < 0) && (p.w < 0)) ) {
+             a += f*d;
+          } else {
+             a -= f*d;
+          }
        }
 
        barrier(CLK_LOCAL_MEM_FENCE); /* Wait for others in work-group */
