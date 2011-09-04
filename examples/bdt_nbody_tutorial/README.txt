@@ -11,3 +11,6 @@ along with the ATI Stream SDK version 2.1.
 Type make to build and ./nbody.x to run.
 
 
+export PYTHONPATH=/usr/lib/paraview
+export LD_LIBRARY_PATH=<install_dir>/coprthr/src/libstdcl/
+rm *csv *png; ./nbody.x ; ./post_process.py; mplayer output.avi
