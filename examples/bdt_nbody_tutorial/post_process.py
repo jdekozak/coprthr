@@ -1,4 +1,4 @@
-#!/usr/bin/pvpython
+#!/usr/bin/pvpython --use-offscreen-rendering
 
 from paraview.simple import *
 import glob, subprocess

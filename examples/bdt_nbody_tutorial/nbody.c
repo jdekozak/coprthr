@@ -9,8 +9,8 @@ int main(int argc, char** argv)
 
    int step,burst;
 
-   int nparticle = 16384; /* MUST be a nice power of two for simplicity */
-   int nstep = 600;
+   int nparticle = 1024; /* MUST be a nice power of two for simplicity */
+   int nstep = 800;
    int nburst = 20; /* MUST divide the value of nstep without remainder */
    int nthread = 64; /* chosen for ATI Radeon HD 5870 */
 
